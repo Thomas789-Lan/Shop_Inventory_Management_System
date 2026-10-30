@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Movement Ledger | Shop Inventory Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <header class="glass header">
+        <div class="logo">
+            <div class="logo-icon">📦</div>
+            <div>
+                <h1>Shop Inventory Management System</h1>
+                <p>Chronological Audit Ledger</p>
+            </div>
+        </div>
+        <div class="status">● System Online</div>
+    </header>
+
+    <section class="hero">
+        <h2>🔄 Stock Movement Ledger</h2>
+        <p>Inspect bidirectional audit trails and transaction sequences across warehouse stock records.</p>
+    </section>
+
+    <div class="glass dll-card">
+        <div class="dll-heading">
+            <span class="direction-icon">➡️</span>
+            <div>
+                <h3>Forward Chronological Sequence</h3>
+                <p>Oldest Registered SKU → Newest Registered SKU</p>
+            </div>
+        </div>
+
+        {% if forward %}
+        <div class="linked-list">
+            <div class="list-label">START</div>
+            <span class="arrow">→</span>
+            {% for item in forward %}
+                <div class="node">
+                    <span class="node-id">ID #{{ item.item_id }}</span>
+                    <span class="node-name">{{ item.name }}</span>
+                    <span class="node-meta">₹{{ "%.0f"|format(item.price) }} • Qty: {{ item.qty }}</span>
+                </div>
+                {% if not loop.last %}
+                    <span class="double-arrow">⇄</span>
+                {% else %}
+                    <span class="arrow">→</span>
+                    <div class="list-label">LATEST</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>Ledger is Empty</h3>
+            <p>No inventory movements recorded.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="glass dll-card">
+        <div class="dll-heading">
+            <span class="direction-icon">⬅️</span>
+            <div>
+                <h3>Reverse Chronological Audit</h3>
+                <p>Newest Registered SKU → Oldest Registered SKU</p>
+            </div>
+        </div>
+
+        {% if backward %}
+        <div class="linked-list">
+            <div class="list-label">LATEST</div>
+            <span class="arrow">←</span>
+            {% for item in backward %}
+                <div class="node">
+                    <span class="node-id">ID #{{ item.item_id }}</span>
+                    <span class="node-name">{{ item.name }}</span>
+                    <span class="node-meta">₹{{ "%.0f"|format(item.price) }} • Qty: {{ item.qty }}</span>
+                </div>
+                {% if not loop.last %}
+                    <span class="double-arrow">⇄</span>
+                {% else %}
+                    <span class="arrow">←</span>
+                    <div class="list-label">START</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>Ledger is Empty</h3>
+            <p>No inventory movements recorded.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="glass dll-card">
+        <div class="dll-heading">
+            <span class="direction-icon">💡</span>
+            <div>
+                <h3>Ledger Architecture & Purpose</h3>
+                <p>Complete Transaction Traceability</p>
+            </div>
+        </div>
+        <div class="dll-info">
+            <p><strong>Forward Sequence:</strong> Audits stock intake and catalog growth in order of creation.</p>
+            <p><strong>Reverse Sequence:</strong> Enables immediate auditing of the most recently added merchandise.</p>
+            <p><strong>Enterprise Value:</strong> Ensures full traceability across supply chain additions and stock adjustments.</p>
+        </div>
+    </div>
+
+    <div class="page-navigation">
+        <a href="{{ url_for('home') }}" class="back-link">← Back to Dashboard</a>
+        <a href="{{ url_for('items') }}" class="btn">📋 View Product Catalog</a>
+    </div>
+
+    <footer>
+        Shop Inventory Management System<br>
+        Thomas Lalnuntluanga (251302044) & Puneet Singh (251302026)
+    </footer>
+
+</div>
+</body>
+</html>

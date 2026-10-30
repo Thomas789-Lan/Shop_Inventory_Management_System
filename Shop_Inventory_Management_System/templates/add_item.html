@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product | Shop Inventory Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <header class="glass header">
+        <div class="logo">
+            <div class="logo-icon">📦</div>
+            <div>
+                <h1>Shop Inventory Management System</h1>
+                <p>Add New Product Node</p>
+            </div>
+        </div>
+        <div class="status">● System Online</div>
+    </header>
+
+    <div class="form-page">
+        <div class="glass form-card">
+            <div class="form-icon">➕</div>
+            <h2>Add New Product</h2>
+            <p class="form-description">
+                Enter the product details below. The item will be inserted into the Dynamic Array, Singly Linked List, and Doubly Linked List.
+            </p>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label for="item_id">Product ID</label>
+                    <input type="number" id="item_id" name="item_id" placeholder="e.g. 105" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" id="name" name="name" placeholder="e.g. USB Condenser Microphone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Unit Price (₹ INR)</label>
+                    <input type="number" step="0.01" id="price" name="price" placeholder="e.g. 3499.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="qty">Initial Stock Quantity</label>
+                    <input type="number" id="qty" name="qty" placeholder="e.g. 15" required>
+                </div>
+
+                <button type="submit" class="submit-btn">➕ Insert Product into DSA Structures</button>
+            </form>
+
+            {% if message %}
+            <div class="form-message {% if success %}success{% else %}error{% endif %}">
+                {{ message }}
+            </div>
+            {% endif %}
+
+            <div class="search-navigation">
+                <a href="{{ url_for('home') }}" class="back-link">← Back to Dashboard</a>
+                <a href="{{ url_for('items') }}" class="back-link">View Inventory →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        DSA Shop Inventory Management System<br>
+        Python • Flask • Array • Singly Linked List • Doubly Linked List
+    </footer>
+
+</div>
+</body>
+</html>

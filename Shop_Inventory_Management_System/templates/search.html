@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Product | Shop Inventory Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <header class="glass header">
+        <div class="logo">
+            <div class="logo-icon">📦</div>
+            <div>
+                <h1>Shop Inventory Management System</h1>
+                <p>DSA Project • O(n) Linear Node Search</p>
+            </div>
+        </div>
+        <div class="status">● System Online</div>
+    </header>
+
+    <div class="form-page">
+        <div class="glass form-card">
+            <div class="form-icon">🔍</div>
+            <h2>Search Product</h2>
+            <p class="form-description">
+                Traverse the Singly Linked List starting from HEAD to locate a product by its unique Item ID.
+            </p>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label for="item_id">Product ID</label>
+                    <input type="number" id="item_id" name="item_id" placeholder="Enter Item ID (e.g. 101)" required>
+                </div>
+                <button type="submit" class="submit-btn">🔍 Search Inventory</button>
+            </form>
+
+            {% if item %}
+            <div class="search-result">
+                <div class="result-icon">✅</div>
+                <h3>Product Node Found!</h3>
+                <div class="result-details">
+                    <p><span>Product ID</span><strong>#{{ item.item_id }}</strong></p>
+                    <p><span>Product Name</span><strong>{{ item.name }}</strong></p>
+                    <p><span>Unit Price</span><strong>₹{{ "%.2f"|format(item.price) }}</strong></p>
+                    <p><span>Stock Quantity</span><strong>{{ item.qty }} units</strong></p>
+                    <p><span>Total Asset Value</span><strong>₹{{ "%.2f"|format(item.price * item.qty) }}</strong></p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if message and not item %}
+            <div class="form-message error">
+                ❌ {{ message }}
+            </div>
+            {% endif %}
+
+            <div class="search-navigation">
+                <a href="{{ url_for('home') }}" class="back-link">← Dashboard</a>
+                <a href="{{ url_for('items') }}" class="back-link">View Inventory →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        DSA Shop Inventory Management System<br>
+        Python • Flask • Array • Singly Linked List • Doubly Linked List
+    </footer>
+
+</div>
+</body>
+</html>

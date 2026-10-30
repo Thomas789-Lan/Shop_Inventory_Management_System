@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Inventory Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <header class="glass header">
+        <div class="logo">
+            <div class="logo-icon"><img src="{{ url_for('static', filename='warehouse-inventory-icon-33867.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <div>
+                <h1>Shop Inventory Management System</h1>
+                <p>Enterprise Retail Stock Control & Asset Dashboard</p>
+            </div>
+        </div>
+        <div class="status">● System Online</div>
+    </header>
+
+    <section class="hero">
+        <h2>Inventory Control Dashboard</h2>
+        <p>Monitor warehouse stock, track asset valuations, and manage supplier reorders in real-time.</p>
+    </section>
+
+    <section class="cards">
+        <div class="glass card">
+            <div class="card-icon">🏷️</div>
+            <h3>UNIQUE PRODUCTS</h3>
+            <div class="card-number">{{ total_items }}</div>
+            <p class="card-small">Active Catalog SKUs</p>
+        </div>
+
+        <div class="glass card">
+            <div class="card-icon"><img src="{{ url_for('static', filename='stock-exchange-icon-png-9918.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <h3>TOTAL STOCK UNITS</h3>
+            <div class="card-number">{{ total_units }}</div>
+            <p class="card-small">Cumulative Warehouse Qty</p>
+        </div>
+
+        <div class="glass card">
+            <div class="card-icon"><img src="{{ url_for('static', filename='bags-icon-10466.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <h3>INVENTORY VALUE</h3>
+            <div class="card-number">₹{{ "%.0f"|format(total_value) }}</div>
+            <p class="card-small">Real-time Asset Valuation</p>
+        </div>
+
+        <div class="glass card">
+            <div class="card-icon">⚡</div>
+            <h3>SYSTEM STATUS</h3>
+            <div class="card-number">Active</div>
+            <p class="card-small">Centralized Database</p>
+        </div>
+    </section>
+
+    <h2 class="section-title">Quick Operations</h2>
+
+    <section class="actions">
+        <div class="glass action">
+            <div class="action-icon"><img src="{{ url_for('static', filename='add-icon-png-2483.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <div>
+                <h3>Add Product</h3>
+                <p>Register new merchandise items into the central warehouse inventory database.</p>
+            </div>
+            <a href="{{ url_for('add_item') }}" class="btn">Add Product</a>
+        </div>
+
+        <div class="glass action">
+            <div class="action-icon"><img src="{{ url_for('static', filename='book-icon-139.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <div>
+                <h3>Product Catalog & Stock</h3>
+                <p>View complete product listings, modify stock levels, and process item removals.</p>
+            </div>
+            <a href="{{ url_for('items') }}" class="btn">View Inventory</a>
+        </div>
+
+        <div class="glass action">
+            <div class="action-icon"><img src="{{ url_for('static', filename='search-icon-png-9985.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <div>
+                <h3>Search SKU by ID</h3>
+                <p>Quickly locate product pricing, supplier details, and stock availability by item code.</p>
+            </div>
+            <a href="{{ url_for('search_item') }}" class="btn">Search Item</a>
+        </div>
+
+        <div class="glass action">
+            <div class="action-icon"><img src="{{ url_for('static', filename='two-circular-arrows.png') }}" alt="Product Icon" style="width: 32px; height: 32px; object-fit: contain;"></div>
+            <div>
+                <h3>Stock Movement Ledger</h3>
+                <p>Inspect bidirectional audit logs and chronological transaction sequences.</p>
+            </div>
+            <a href="{{ url_for('doubly') }}" class="btn">View Ledger</a>
+        </div>
+    </section>
+
+    <footer>
+        Shop Inventory Management System<br>
+        Thomas Lalnuntluanga (251302044) & Puneet (251302026)
+    </footer>
+
+</div>
+</body>
+</html>
